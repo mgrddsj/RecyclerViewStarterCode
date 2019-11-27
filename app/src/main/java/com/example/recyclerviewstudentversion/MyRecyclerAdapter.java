@@ -18,7 +18,7 @@ import java.util.List;
 //getItemCount
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>
 {
-    List<Player> plyrs;
+     List<Player> plyrs;
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
@@ -44,7 +44,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
     @Override
     public int getItemCount()
     {
-        return 0;
+        return plyrs.size();
     }
 
     // Todo implement ViewHolder
