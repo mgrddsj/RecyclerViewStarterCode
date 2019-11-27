@@ -1,6 +1,7 @@
 package com.example.recyclerviewstudentversion;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
      List<Player> plyrs;
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public MyRecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.single_player_view, parent, false);
@@ -34,9 +35,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position)
     {
-    holder.photo.setImageResource(plyrs.get(position).getImageResource());
-    holder.t1.setText(plyrs.get(position).getName());
-    holder.t2.setText(plyrs.get(position).getAge());
+        holder.photo.setImageResource(plyrs.get(position).getImageResource());
+        holder.t1.setText(plyrs.get(position).getName());
+        holder.t2.setText(plyrs.get(position).getAge() + "");
         holder.t3.setText(plyrs.get(position).getMainSport());
         holder.t4.setText(plyrs.get(position).getWorth()+"");
     }
@@ -61,7 +62,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
         {
             super(itemView);
             photo=itemView.findViewById(R.id.imageView);
-          t1=itemView.findViewById(R.id.textView1);
+            t1=itemView.findViewById(R.id.textView1);
             t2=itemView.findViewById(R.id.textView2);
             t3=itemView.findViewById(R.id.textView3);
             t4=itemView.findViewById(R.id.textView4);
@@ -71,7 +72,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
     // Todo Create the MyRecyclerAdapter class initializer and put the list into a variable.
     public MyRecyclerAdapter(List list)
     {
-  plyrs=list;
+        plyrs=list;
     }
 
 }
