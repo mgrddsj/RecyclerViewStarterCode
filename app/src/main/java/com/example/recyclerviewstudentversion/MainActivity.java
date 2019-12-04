@@ -2,11 +2,15 @@ package com.example.recyclerviewstudentversion;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -18,7 +22,7 @@ import java.util.Collections;
 import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private MyRecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     List<Player> list;
 
@@ -89,5 +93,33 @@ public class MainActivity extends AppCompatActivity {
               new Player("Stephen Curry", 31, 37460000, "Basketball", R.drawable.team_man_placeholder)
       }));
         return list;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String s)
+            {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s)
+            {
+                mAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+
+        return true;
     }
 }
