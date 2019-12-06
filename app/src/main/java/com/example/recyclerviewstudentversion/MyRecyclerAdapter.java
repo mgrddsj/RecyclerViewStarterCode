@@ -23,6 +23,7 @@ import java.util.List;
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder> implements Filterable
 {
     List<Player> plyrs;
+    List<Player> plyrsFull;
     @NonNull
     @Override
     public MyRecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
@@ -74,7 +75,8 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
 
     public MyRecyclerAdapter(List list)
     {
-        plyrs=list;
+        plyrs = list;
+        plyrsFull = new ArrayList<>(plyrs);
     }
 
     @Override
@@ -88,11 +90,11 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
             List<Player> filteredList = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(plyrs);
+                filteredList.addAll(plyrsFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (Player item : plyrs) {
+                for (Player item : plyrsFull) {
                     if (item.getName().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
